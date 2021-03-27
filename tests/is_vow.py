@@ -1,7 +1,5 @@
 import vowing
-import inspect
 import time
-from typing import Callable
 
 @vowing.is_vow
 def intensive_operation(n):
