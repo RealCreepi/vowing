@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'vowing',
   packages = ['vowing'],
-  version = '0.2',
+  version = '0.3',
   license = 'MIT',
   description = "'Vowing' is an alternative to Python's built in async/await system that has been inspired by Javascript's Promise.",
   author = 'Creepi',
