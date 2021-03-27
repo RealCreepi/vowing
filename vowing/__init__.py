@@ -74,7 +74,7 @@ class VowThread(Thread):
 
 
 class Vow:
-    def __init__(self, target: Callable, args: Iterable = tuple(), kwargs: Iterable = tuple(), timeout = None) -> None:
+    def __init__(self, target: Callable, args: Iterable = tuple(), kwargs: dict = dict(), timeout = None) -> None:
         self.timeout = timeout
 
         self.__return_queue = queue.Queue()
