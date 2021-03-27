@@ -8,13 +8,13 @@ Vow(target: Callable, args: Iterable, timeout = None)
 ```
 `Vow` is the main class and creates an instance of the vow.\
 `.get()` returns `None` or an instance of `VowReturn` depending on if the vow hasn't been fulfilled yet.\
-`.wait_for_me(wait_func)` executes `wait_func` repeatedly until the vow has been fulfilled.\
+`.wait_for_me(wait_func)` executes `wait_func` repeatedly until the vow has been fulfilled.
 
 ### VowReturn
 `VowReturn` is an internal class used to store the returned value and status of a vow.\
 `.ran` is either `True` or `False` depending on if the vow ran successfully.\
 `.exception` is either `None` or an instance of `Exception`.\
-`.returned` is the value returned by the vow.\
+`.returned` is the value returned by the vow.
 
 ## Examples
 ```python
