@@ -16,6 +16,10 @@ Vow(target: Callable, args: Iterable, timeout = None)
 `.exception` is either `None` or an instance of `Exception`.\
 `.returned` is the value returned by the vow.
 
+### Decorators
+`is_vow()` turns a function into a vow. All subsequent calls to that function will return a `Vow` object.\
+(Yes, pylint might scream at you.)
+
 ## Examples
 ```python
 # Simulate an intensive_operation
