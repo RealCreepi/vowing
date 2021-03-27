@@ -4,7 +4,7 @@ setup(
   packages = ['vowing'],
   version = '0.1',
   license = 'MIT',
-  description = "'Vowing' is an alternative to Python's built in async/await system. It has been inspired by Javascript's Promise.",
+  description = "'Vowing' is an alternative to Python's built in async/await system that has been inspired by Javascript's Promise.",
   author = 'Creepi',
   url = 'https://github.com/RealCreepi/vowing',
   keywords = ['async', 'threading', 'vowing', 'promise', 'javascript'],
