@@ -1,2 +1,3 @@
 dist/
 MANIFEST
+__pycache__/
