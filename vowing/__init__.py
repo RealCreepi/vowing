@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
+import inspect
 import queue
 import time
 import sys
@@ -73,22 +74,22 @@ class VowThread(Thread):
 
 
 class Vow:
-    def __init__(self, target: Callable, args: Iterable = tuple(), timeout = None) -> None:
+    def __init__(self, target: Callable, args: Iterable = tuple(), kwargs: Iterable = tuple(), timeout = None) -> None:
         self.timeout = timeout
 
         self.__return_queue = queue.Queue()
         self.__returned = None
         self.__start_time = time.time()
-        self.__thread = VowThread(target = self.__returning_thread_wrapper, args = (self.__return_queue, target, args))
+        self.__thread = VowThread(target = self.__returning_thread_wrapper, args = (self.__return_queue, target, args, kwargs))
         self.__thread.start()
     
-    def __returning_thread_wrapper(self, sync_queue, target, args):
+    def __returning_thread_wrapper(self, sync_queue, target, args, kwargs):
         ran = True
         returned = None
         exception = None
 
         try:
-            returned = target(*args)
+            returned = target(*args, **kwargs)
         
         except Exception as e:
             ran = False
@@ -128,3 +129,13 @@ class Vow:
             if self.timeout and (time.time() - self.__start_time) > self.timeout:
                 self.__thread.kill()
                 raise TimeoutError(f"Vow was broken and timed out after {self.timeout}s.")
+
+
+def is_vow(func) -> Callable:
+    def wrapper(*args, **kwargs) -> Vow:
+        if inspect.isclass(func):
+            raise TypeError("'is_vow' can't be applied to a class.")
+
+        return Vow(target = func, args = args, kwargs = kwargs)
+    
+    return wrapper
