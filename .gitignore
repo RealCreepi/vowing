@@ -1,3 +1,4 @@
 dist/
 MANIFEST
 __pycache__/
+.vscode
