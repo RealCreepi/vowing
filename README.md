@@ -17,6 +17,11 @@ Vow(target: Callable, args: Iterable, timeout = None)
 `.returned` is the value returned by the vow.
 
 ### Decorators
+```python
+@is_vow()
+def function():
+    ...
+```
 `is_vow()` turns a function into a vow. All subsequent calls to that function will return a `Vow` object.\
 (Yes, pylint might scream at you.)
 
