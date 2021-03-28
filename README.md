@@ -4,7 +4,7 @@
 ## Documentation
 ### Vow
 ```python
-Vow(target: Callable, args: Iterable, timeout = None)
+Vow(target: Callable, args: Iterable, kwargs: dict, timeout = None)
 ```
 `Vow` is the main class and creates an instance of the vow.\
 `.get()` returns `None` or an instance of `VowReturn` depending on if the vow hasn't been fulfilled yet.\
