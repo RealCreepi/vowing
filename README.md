@@ -53,17 +53,19 @@ print(result)
 ```
 
 ```python
-# Simulate an intensive_operation with timeout of 5s
+# Turn intensive_operation into a vow
 import vowing
 import time
 
+@vowing.is_vow
 def intensive_operation(n):
     time.sleep(10)
 
     return n / 25
 
-vow = vowing.Vow(target = intensive_operation, args = (100,), timeout = 5)
+vow = intensive_operation(100)
 vow.wait_for_me()
+print(vow.get())
 ```
 
 ## Contributing
