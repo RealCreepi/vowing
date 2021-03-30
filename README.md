@@ -25,6 +25,9 @@ def function():
 `is_vow()` turns a function into a vow. All subsequent calls to that function will return a `Vow` object.\
 (Yes, pylint might scream at you.)
 
+### Functions
+`wait_for_vows(vows, wait_func)` executes `wait_func` repeatedly until all vows in `vows` have been fulfilled.
+
 ## Examples
 ```python
 # Simulate an intensive_operation
