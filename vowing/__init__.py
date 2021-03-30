@@ -27,7 +27,7 @@ import queue
 import time
 import sys
 from threading import Thread
-from typing import Any, Callable, Iterable
+from typing import Any, Callable, Iterable, Union
 
 
 class VowReturn:
@@ -59,12 +59,10 @@ class VowThread(Thread):
         if event == 'call':
             return self.localtrace
 
-        else:
-            return None
+        return None
     
     def localtrace(self, frame, event, arg):
-        if self.__killed:
-            if event == 'line':
+        if (self.__killed) and event == 'line':
                 raise SystemExit()
 
         return self.localtrace
@@ -102,7 +100,7 @@ class Vow:
             "returned": returned
         })
 
-    def get(self, validate: bool = True) -> Any:
+    def get(self, validate: bool = True) -> Union[None, VowReturn]:
         if validate: self.validate()
 
         if not self.__returned:
@@ -139,3 +137,8 @@ def is_vow(func) -> Callable:
         return Vow(target = func, args = args, kwargs = kwargs)
     
     return wrapper
+
+
+def wait_for_vows(vows: Iterable[Vow], wait_func: Callable = (lambda: None)) -> None:
+    while None in [vow.get() for vow in vows]:
+        wait_func()
